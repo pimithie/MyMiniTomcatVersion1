@@ -1,5 +1,6 @@
 package com.xqTomcat.starter;
 
+import com.xqTomcat.handler.StaticResourceHandler;
 import com.xqTomcat.http.HttpRequestEntity;
 import com.xqTomcat.utils.HttpRequestParser;
 import org.slf4j.Logger;
@@ -39,6 +40,8 @@ public class MyTomcatStarter {
             Socket socket = serverSocket.accept();
             // parse the http request
             HttpRequestEntity httpRequestEntity = HttpRequestParser.parse(socket);
+            // 此处默认全是静态资源
+            StaticResourceHandler.handle(httpRequestEntity,socket);
         }
     }
 

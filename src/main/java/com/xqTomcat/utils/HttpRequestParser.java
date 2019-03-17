@@ -78,7 +78,6 @@ public class HttpRequestParser {
                 // read the headers
                 Map<String, String> requestHeaders = entity.getRequestHeaders();
                 while (!"".equals(line = br.readLine())){
-                    logger.info("request headers is "+line);
                     String[] headers = line.split(":");
                     requestHeaders.put(headers[0],headers[1]);
                 }
