@@ -81,7 +81,11 @@ public class HttpRequestParser {
                         requestHeaders.put(headers[0],headers[1].trim());
                     } else {
                         // request body
-
+                        String[] parameterPairs = strings[i].split("&");
+                        for (String str : parameterPairs){
+                            String[] parameter = str.split("=");
+                            requestEntity.put(parameter[0],parameter[1]);
+                        }
                     }
                 }
             } catch (IOException e) {
