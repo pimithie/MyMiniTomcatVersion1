@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e0223a0-e436-4f2d-bef5-1c477497cd88" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/xqTomcat/handler/StaticResourceHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xqTomcat/starter/Test1.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xqTomcat/handler/StaticResourceHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xqTomcat/handler/StaticResourceHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/xqTomcat/starter/MyTomcatStarter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xqTomcat/starter/MyTomcatStarter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/xqTomcat/utils/HttpRequestParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xqTomcat/utils/HttpRequestParser.java" afterDir="false" />
     </list>
@@ -20,43 +21,46 @@
       <usages-collector id="statistics.lifecycle.project">
         <counts>
           <entry key="project.closed" value="1" />
+          <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.4" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.opened" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="3329" />
+          <entry key="java" value="4750" />
           <entry key="xml" value="159" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="3329" />
+          <entry key="JAVA" value="4750" />
           <entry key="XML" value="159" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="8" />
+          <entry key="class" value="1" />
+          <entry key="java" value="17" />
           <entry key="xml" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="8" />
+          <entry key="CLASS" value="1" />
+          <entry key="JAVA" value="17" />
           <entry key="XML" value="1" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/xqTomcat/starter/MyTomcatStarter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="94">
-              <caret line="34" column="28" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
+            <state relative-caret-position="180">
+              <caret line="38" column="29" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -67,8 +71,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/xqTomcat/handler/StaticResourceHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="424">
-              <caret line="30" column="33" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
+            <state relative-caret-position="79">
+              <caret line="45" column="23" lean-forward="true" selection-start-line="45" selection-start-column="23" selection-end-line="45" selection-end-column="23" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/xqTomcat/utils/HttpRequestParser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="236">
+              <caret line="66" column="16" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -77,13 +93,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/xqTomcat/utils/HttpRequestParser.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/xqTomcat/starter/Test1.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2125">
-              <caret line="85" column="78" lean-forward="true" selection-start-line="85" selection-start-column="78" selection-end-line="85" selection-end-column="78" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="200">
+              <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -115,9 +128,11 @@
         <option value="$PROJECT_DIR$/src/main/java/com/xqTomcat/MyTomcatStarter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xqTomcat/http/HttpMethod.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xqTomcat/http/HttpRequestEntity.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xqTomcat/utils/HttpRequestParser.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xqTomcat/starter/MyTomcatStarter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xqTomcat/starter/TestLock.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xqTomcat/handler/StaticResourceHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xqTomcat/utils/HttpRequestParser.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xqTomcat/starter/Test1.java" />
       </list>
     </option>
   </component>
@@ -159,6 +174,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -192,18 +208,26 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="xqTomcat" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="MyMiniTomcatVersion1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MyMiniTomcatVersion1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="xqTomcat" type="462c0819:PsiDirectoryNode" />
+              <item name="starter" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552830044931" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552921505135" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Project" />
@@ -228,7 +252,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Test1">
     <configuration name="MyTomcatStarter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.xqTomcat.starter.MyTomcatStarter" />
       <module name="MyMiniTomcatVersion1" />
@@ -242,9 +266,42 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Test1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.xqTomcat.starter.Test1" />
+      <module name="MyMiniTomcatVersion1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.xqTomcat.starter.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestLock" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.xqTomcat.starter.TestLock" />
+      <module name="MyMiniTomcatVersion1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.xqTomcat.starter.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.MyTomcatStarter" />
+      <item itemvalue="Application.TestLock" />
+      <item itemvalue="Application.Test1" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Test1" />
         <item itemvalue="Application.MyTomcatStarter" />
+        <item itemvalue="Application.TestLock" />
       </list>
     </recent_temporary>
   </component>
@@ -259,45 +316,46 @@
       <option name="presentableId" value="Default" />
       <updated>1552817611299</updated>
       <workItem from="1552817614909" duration="10632000" />
+      <workItem from="1552900614828" duration="7395000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10632000" />
+    <option name="totallyTimeSpent" value="18027000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Image Layers" />
-      <window_info id="Designer" />
-      <window_info id="UI Designer" />
-      <window_info id="Capture Tool" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24962178" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25340393" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Tail" />
-      <window_info anchor="bottom" id="Messages" />
-      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" weight="0.24528302" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.27787307" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3173242" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.17324185" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.13379073" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info anchor="right" id="Database" />
-      <window_info anchor="right" id="Maven Projects" />
+      <window_info anchor="bottom" id="Tail" order="7" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.24528302" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Database" order="5" />
+      <window_info anchor="right" id="Theme Preview" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Maven Projects" order="8" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -314,13 +372,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="592">
           <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xqTomcat/starter/MyTomcatStarter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="6" column="28" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -357,27 +408,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/java/io/BufferedReader.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/jre/lib/rt.jar!/sun/nio/cs/StreamDecoder.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-266">
-          <caret line="311" column="11" selection-start-line="311" selection-start-column="11" selection-end-line="311" selection-end-column="11" />
+        <state relative-caret-position="-81">
+          <caret line="105" column="15" selection-start-line="105" selection-start-column="15" selection-end-line="105" selection-end-column="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xqTomcat/starter/MyTomcatStarter.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/java/io/InputStreamReader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="34" column="28" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
+        <state relative-caret-position="61">
+          <caret line="183" column="21" selection-start-line="183" selection-start-column="21" selection-end-line="183" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/java/net/Socket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="1564" column="18" selection-start-line="1564" selection-start-column="18" selection-end-line="1564" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xqTomcat/starter/TestLock.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/java/io/BufferedReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="364" column="11" lean-forward="true" selection-start-line="364" selection-start-column="11" selection-end-line="364" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xqTomcat/handler/StaticResourceHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="45" column="23" lean-forward="true" selection-start-line="45" selection-start-column="23" selection-end-line="45" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xqTomcat/handler/StaticResourceHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xqTomcat/starter/MyTomcatStarter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="424">
-          <caret line="30" column="33" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
+        <state relative-caret-position="180">
+          <caret line="38" column="29" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -386,11 +465,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xqTomcat/utils/HttpRequestParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2125">
-          <caret line="85" column="78" lean-forward="true" selection-start-line="85" selection-start-column="78" selection-end-line="85" selection-end-column="78" />
+        <state relative-caret-position="236">
+          <caret line="66" column="16" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xqTomcat/starter/Test1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
         </state>
       </provider>
     </entry>

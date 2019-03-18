@@ -23,9 +23,7 @@ import java.util.concurrent.Executors;
  */
 public class MyTomcatStarter {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
-    private static final ExecutorService executor = Executors.newFixedThreadPool(10);
+    private final static Logger logger = LoggerFactory.getLogger(MyTomcatStarter.class);
 
     /**
      * start the tomcat server
@@ -35,11 +33,14 @@ public class MyTomcatStarter {
         long start = System.currentTimeMillis();
         // create the serversocket to listening the specific port
         ServerSocket serverSocket = new ServerSocket(8080);
+        logger.info("my tomcat started,listening "+8080+"port");
         while (true){
             // start listening
             Socket socket = serverSocket.accept();
+            logger.info("receive http request,create the socket:"+socket);
             // parse the http request
             HttpRequestEntity httpRequestEntity = HttpRequestParser.parse(socket);
+            logger.info("finish parse the http request,the parsing result is "+httpRequestEntity);
             // 此处默认全是静态资源
             StaticResourceHandler.handle(httpRequestEntity,socket);
         }

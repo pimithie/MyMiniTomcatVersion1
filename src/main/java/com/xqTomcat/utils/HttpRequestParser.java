@@ -5,10 +5,7 @@ import com.xqTomcat.http.HttpRequestEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
@@ -57,40 +54,34 @@ public class HttpRequestParser {
         }
         if (inputStream != null){
             entity = new HttpRequestEntity();
-            BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
+            BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
             try {
-                // read the request line
-                String requestLine = br.readLine();
-                logger.info("request line is "+requestLine);
-                // split the request line
-                String[] strs = requestLine.split(" ");
-                HttpMethod httpMethod = null;
-                if ("get".equalsIgnoreCase(strs[0])){
-                    httpMethod = HttpMethod.GET;
+                // read the request
+                byte[] bytes = new byte[bufferedInputStream.available()];
+                bufferedInputStream.read(bytes);
+                String httpRequestDatagram = new String(bytes,0,bytes.length);
+                logger.info("httpRequestDatagram:\r\n"+httpRequestDatagram);
+                // parse the request
+                String[] strings = httpRequestDatagram.split("\r\n");
+                String requestLine  = strings[0];
+                logger.info("requestLine:"+requestLine);
+                String[] requestLineInfo = requestLine.split(" ");
+                if ("GET".equalsIgnoreCase(requestLineInfo[0])){
+                    entity.setHttpMethod(HttpMethod.GET);
                 } else {
-                    // otherwise,post method
-                    httpMethod = HttpMethod.POST;
+                    entity.setHttpMethod(HttpMethod.POST);
                 }
-                entity.setHttpMethod(httpMethod);
-                entity.setRequestURL(strs[1]);
-                String line = null;
-
-                // read the headers
+                entity.setRequestURL(requestLineInfo[1]);
                 Map<String, String> requestHeaders = entity.getRequestHeaders();
-                while (!"".equals(line = br.readLine())){
-                    String[] headers = line.split(":");
-                    requestHeaders.put(headers[0],headers[1]);
-                }
-
-                // read the request parameter
                 Map<String, String> requestEntity = entity.getRequestEntity();
-                while ((line = br.readLine()) != null){
-                    logger.info("request parameters are "+line);
-                    // name=zhangsan&age=20
-                    String[] requestParams = line.split("&");
-                    for (String param : requestParams){
-                        String[] parameters = param.split("=");
-                        requestEntity.put(parameters[0],parameters[1]);
+                for (int i = 1;i<strings.length;i++){
+                    if (!" ".equals(strings[i])){
+                        // headers
+                        String[] headers = strings[i].split(":");
+                        requestHeaders.put(headers[0],headers[1].trim());
+                    } else {
+                        // request body
+
                     }
                 }
             } catch (IOException e) {

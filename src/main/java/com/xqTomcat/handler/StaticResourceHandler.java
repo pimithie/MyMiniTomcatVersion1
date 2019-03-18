@@ -21,6 +21,7 @@ public class StaticResourceHandler {
     public static void handle (HttpRequestEntity httpRequestEntity,Socket socket) throws IOException {
         // resource path
         String resourcePath = WEB_ROOT+httpRequestEntity.getRequestURL();
+        LOGGER.info("resourcePath:"+resourcePath);
         // create the http response
         StringBuilder stringBuilder = new StringBuilder(128);
         stringBuilder.append("HTTP/1.1 200 ok\r\n");
@@ -42,7 +43,6 @@ public class StaticResourceHandler {
             outputStream.flush();
         }
         outputStream.close();
-        socket.shutdownOutput();
         socket.close();
     }
 
