@@ -40,8 +40,10 @@ public class HttpRequestParser {
 
         // the result returned
         HttpRequestEntity entity = null;
+
         // retrieve the inputstream of current socket
         InputStream inputStream = null;
+
         try {
             inputStream = socket.getInputStream();
         } catch (IOException e) {
@@ -56,13 +58,17 @@ public class HttpRequestParser {
             entity = new HttpRequestEntity();
             BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
             try {
+
                 // read the request
                 byte[] bytes = new byte[bufferedInputStream.available()];
                 bufferedInputStream.read(bytes);
                 String httpRequestDatagram = new String(bytes,0,bytes.length);
                 logger.info("httpRequestDatagram:\r\n"+httpRequestDatagram);
+
                 // parse the request
                 String[] strings = httpRequestDatagram.split("\r\n");
+
+                // parse request line
                 String requestLine  = strings[0];
                 logger.info("requestLine:"+requestLine);
                 String[] requestLineInfo = requestLine.split(" ");
@@ -72,6 +78,8 @@ public class HttpRequestParser {
                     entity.setHttpMethod(HttpMethod.POST);
                 }
                 entity.setRequestURL(requestLineInfo[1]);
+
+                //parse the http request headers and the parameter
                 Map<String, String> requestHeaders = entity.getRequestHeaders();
                 Map<String, String> requestEntity = entity.getRequestEntity();
                 for (int i = 1;i<strings.length;i++){
