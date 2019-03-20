@@ -1,4 +1,4 @@
-package com.xqTomcat.Servlet;
+package com.xqTomcat.servlet;
 
 import com.xqTomcat.annotation.MyServlet;
 import com.xqTomcat.http.HttpRequest;

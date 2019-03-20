@@ -1,6 +1,6 @@
 package com.xqTomcat.dispatcher;
 
-import com.xqTomcat.Servlet.Servlet;
+import com.xqTomcat.servlet.Servlet;
 import com.xqTomcat.http.HttpRequest;
 import com.xqTomcat.http.HttpResponse;
 import org.slf4j.Logger;
@@ -51,33 +51,34 @@ public class Dispatcher {
         HttpResponse response = new HttpResponse(socket.getOutputStream());
         logger.info("create request instance:"+request);
         logger.info("create response instance:"+response);
-        // retrieve the request url 获取http请求的url
-        String requestURL = request.getRequestURL();
-        if (null == requestURL){
-            return;
+        try {
+            // retrieve the request url 获取http请求的url
+            String requestURL = request.getRequestURL();
+            if (null == requestURL){
+                throw new RuntimeException("request url is null");
+            }
+            // search for the servlet 搜寻对应路径的servlet
+            Servlet servlet = (Servlet) allAlreadyExistsServlet.get(requestURL);
+            if (null == servlet){
+                Class<?> clazz = servletMapping.get(requestURL);
+                if (null == clazz){
+                    throw new RuntimeException("no applicable servlet for this path:"+requestURL);
+                }
+                logger.info("create the servlet instance:"+clazz.getName());
+                servlet = (Servlet) clazz.newInstance();
+                servlet.init();
+                logger.info("new servlet instance of "+clazz.getName()+" is put into the allAlreadyExistsServlet.");
+                allAlreadyExistsServlet.put(requestURL,servlet);
+            }
+            // invoke the service method of the servlet 调用servlet的service方法
+            servlet.service(request,response);
+        } catch (Exception e){
+            response.getOutputStream().write("404 not found for this url.".getBytes("UTF-8"));
+        }finally {
+            response.send();
+            // close the socket 关闭socket连接
+            socket.close();
         }
-        String path = null;
-        //    /test/login
-        int firstSlashIndex = requestURL.indexOf("/");
-        if (-1 != firstSlashIndex){
-            int secondSlashIndex = requestURL.indexOf("/", firstSlashIndex + 1);
-            path = requestURL.substring(secondSlashIndex);
-        }
-        // search for the servlet 搜寻对应路径的servlet
-        Servlet servlet = (Servlet) allAlreadyExistsServlet.get(path);
-        if (null == servlet){
-            Class<?> clazz = servletMapping.get(path);
-            logger.info("create the servlet instance:"+clazz.getName());
-            servlet = (Servlet) clazz.newInstance();
-            servlet.init();
-            logger.info("new servlet instance of "+clazz.getName()+" is put into the allAlreadyExistsServlet.");
-            allAlreadyExistsServlet.put(path,servlet);
-        }
-        // invoke the service method of the servlet 调用servlet的service方法
-        servlet.service(request,response);
-        response.send();
-        // close the socket 关闭socket连接
-        socket.close();
         logger.info("finishing request process.");
     }
 

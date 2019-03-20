@@ -1,16 +1,19 @@
 package com.xqTomcat.starter;
 
-import com.xqTomcat.Servlet.Servlet;
+import com.xqTomcat.servlet.Servlet;
 import com.xqTomcat.annotation.MyServlet;
 import com.xqTomcat.dispatcher.Dispatcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URL;
 import java.util.Map;
+import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -26,7 +29,23 @@ public class MyTomcatStarter {
 
     private static final ExecutorService excutors = Executors.newFixedThreadPool(10);
 
-    private static String basePackage = "com.xqTomcat";
+    private static String basePackage;
+
+    private static int port;
+
+    //read the configuration file 读取配置文件
+    static {
+        InputStream resource = MyTomcatStarter.class.getClassLoader().getResourceAsStream("MyServer.properties");
+        Properties properties = new Properties();
+        try {
+            properties.load(resource);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("read configuration file fail!");
+        }
+        basePackage = properties.getProperty("basePackage");
+        port = Integer.parseInt(properties.getProperty("port"));
+    }
 
     /**
      * start the tomcat server
