@@ -4,11 +4,9 @@ import com.xqTomcat.annotation.MyServlet;
 import com.xqTomcat.http.HttpRequest;
 import com.xqTomcat.http.HttpResponse;
 
-import java.io.UnsupportedEncodingException;
 
 /**
  * @author xiaqi
- * @date 2019/3/20
  * my test servlet
  * 测试servlet
  */
@@ -16,7 +14,7 @@ import java.io.UnsupportedEncodingException;
 public class MyTestServlet extends HttpServlet {
     @Override
     protected void doGet(HttpRequest request, HttpResponse response) throws Exception {
-        response.getOutputStream().write("你好！夏齐".getBytes("UTF-8"));
+        response.getOutputStream().write("你好！世界<br>hello world".getBytes("UTF-8"));
     }
 
     @Override

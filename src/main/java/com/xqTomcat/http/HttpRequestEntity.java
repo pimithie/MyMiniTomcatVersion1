@@ -5,8 +5,8 @@ import java.util.Map;
 
 /**
  * @author xiaqi
- * @date 2019/3/17
  * http request entity,including current http request information
+ * http请求报文信息的封装
  */
 public class HttpRequestEntity {
 

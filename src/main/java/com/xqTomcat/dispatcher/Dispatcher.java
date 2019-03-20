@@ -3,23 +3,18 @@ package com.xqTomcat.dispatcher;
 import com.xqTomcat.Servlet.Servlet;
 import com.xqTomcat.http.HttpRequest;
 import com.xqTomcat.http.HttpResponse;
-import com.xqTomcat.utils.HttpRequestParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.*;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author xiaqi
- * @date 2019/3/20
  * process the http request and dispatch the request to servlet
- * 解析请求，查询handlerMapping找到对应的servlet并转发
+ * 处理请求，查询handlerMapping找到对应的servlet并转发
  */
 public class Dispatcher {
 
@@ -58,7 +53,7 @@ public class Dispatcher {
         logger.info("create response instance:"+response);
         // retrieve the request url 获取http请求的url
         String requestURL = request.getRequestURL();
-        if (null == request){
+        if (null == requestURL){
             return;
         }
         String path = null;
@@ -81,7 +76,7 @@ public class Dispatcher {
         // invoke the service method of the servlet 调用servlet的service方法
         servlet.service(request,response);
         response.send();
-        // close the socket
+        // close the socket 关闭socket连接
         socket.close();
         logger.info("finishing request process.");
     }

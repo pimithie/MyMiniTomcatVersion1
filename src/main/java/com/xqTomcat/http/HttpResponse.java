@@ -1,13 +1,10 @@
 package com.xqTomcat.http;
 
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 
 /**
  * @author xiaqi
- * @date 2019/3/20
  * http response http响应封装类
  */
 public class HttpResponse {
@@ -75,7 +72,6 @@ public class HttpResponse {
         StringBuilder stringBuilder = new StringBuilder(200);
         stringBuilder.append("HTTP/1.1 ").append(statusCode).append("\r\n");
         stringBuilder.append("Content-Type: ").append(contentType).append("\r\n");
-//        stringBuilder.append("Content-Length: ").append(contentLength).append("\r\n");
         stringBuilder.append("\r\n");
         outputStream.write(stringBuilder.toString().getBytes("UTF-8"));
     }

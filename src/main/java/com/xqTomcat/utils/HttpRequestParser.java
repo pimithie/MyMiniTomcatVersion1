@@ -10,7 +10,6 @@ import java.io.InputStream;
 
 /**
  * @author xiaqi
- * @date 2019/3/20
  * http parser
  * http请求解析器
  */
@@ -33,8 +32,6 @@ public class HttpRequestParser {
         if (0 == httpRequest.length()){
             return null;
         }
-        LOGGER.info("请求报文：");
-        LOGGER.info(httpRequest);
         String[] requestLines = httpRequest.split("\r\n");
         // parse the request line 解析http请求行
         String requestLine = requestLines[0];

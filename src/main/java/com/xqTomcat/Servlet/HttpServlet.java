@@ -4,11 +4,9 @@ import com.xqTomcat.http.HttpMethod;
 import com.xqTomcat.http.HttpRequest;
 import com.xqTomcat.http.HttpResponse;
 
-import java.io.UnsupportedEncodingException;
 
 /**
  * @author xiaqi
- * @date 2019/3/20
  * simulation the HttpServlet
  * 模拟HttpServlet
  */

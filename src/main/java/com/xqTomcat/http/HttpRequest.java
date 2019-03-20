@@ -4,11 +4,9 @@ import com.xqTomcat.utils.HttpRequestParser;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.Socket;
 
 /**
  * @author xiaqi
- * @date 2019/3/20
  * http request 封装类
  */
 public class HttpRequest {

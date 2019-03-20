@@ -2,8 +2,8 @@ package com.xqTomcat.http;
 
 /**
  * @author xiaqi
- * @date 2019/3/17
  * http request method enum
+ * http请求方法枚举类
  */
 public enum HttpMethod {
     //http post method

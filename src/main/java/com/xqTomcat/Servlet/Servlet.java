@@ -5,7 +5,6 @@ import com.xqTomcat.http.HttpResponse;
 
 /**
  * @author xiaqi
- * @date 2019/3/20
  */
 public interface Servlet {
 
