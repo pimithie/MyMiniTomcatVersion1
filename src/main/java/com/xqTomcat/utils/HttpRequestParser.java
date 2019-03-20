@@ -5,101 +5,82 @@ import com.xqTomcat.http.HttpRequestEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.*;
-import java.net.Socket;
-import java.util.HashMap;
-import java.util.Map;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * @author xiaqi
- * @date 2019/3/17
- * http request parsing tool
+ * @date 2019/3/20
+ * http parser
+ * http请求解析器
  */
 public class HttpRequestParser {
 
-    private static final Logger logger = LoggerFactory.getLogger(HttpRequestParser.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(HttpRequestParser.class);
 
-    /**
-     * can't create the instance of this class
-     */
+    // can't create the instance of the class
+    // 不能创建此对象的实例
     private HttpRequestParser(){}
 
-    /**
-     * parst the http request
-     * @param socket current socket
-     * @return the instance of HttpRequestEntity
-     */
-    public static HttpRequestEntity parse(Socket socket){
-        /*
-            GET /xxx/xxx HTTP/1.1
-            xxx:xxx
-            xxx:xxx
-
-            xxx=xxx&yyy=yyy
-         */
-
-        // the result returned
-        HttpRequestEntity entity = null;
-
-        // retrieve the inputstream of current socket
-        InputStream inputStream = null;
-
-        try {
-            inputStream = socket.getInputStream();
-        } catch (IOException e) {
-            logger.error("parse the http request fail!",e);
-            try {
-                socket.close();
-            } catch (IOException e1) {
-                e1.printStackTrace();
+    public static HttpRequestEntity parse(InputStream inputStream) throws IOException {
+        // create the instance of HttpEntity 创建http请求实体对象
+        HttpRequestEntity entity = new HttpRequestEntity();
+        // read the request 读取请求
+        byte[] bytes = new byte[inputStream.available()];
+        inputStream.read(bytes);
+        // start parse http request 开始解析http请求
+        String httpRequest = new String(bytes);
+        if (0 == httpRequest.length()){
+            return null;
+        }
+        LOGGER.info("请求报文：");
+        LOGGER.info(httpRequest);
+        String[] requestLines = httpRequest.split("\r\n");
+        // parse the request line 解析http请求行
+        String requestLine = requestLines[0];
+        LOGGER.info("requestLine:"+requestLine);
+        String[] requestLineInfo = requestLine.split(" ");
+        // only parse the get and post method 只解析get和post方法的请求
+        if (requestLineInfo[0].equalsIgnoreCase("GET")){
+            entity.setHttpMethod(HttpMethod.GET);
+        } else {
+            entity.setHttpMethod(HttpMethod.POST);
+        }
+        entity.setRequestURL(requestLineInfo[1]);
+        // check get method parameter 检验为get方法时，读取参数
+        if (HttpMethod.GET == entity.getHttpMethod()){
+            int paramSplitorIndex = entity.getRequestURL().indexOf("?");
+            if (-1 != paramSplitorIndex){
+                String parameterPairs = entity.getRequestURL().substring(paramSplitorIndex+1);
+                String[] paramPairs = parameterPairs.split("&");
+                for (String params : paramPairs){
+                    String[] strs = params.split("=");
+                    entity.getRequestEntity().put(strs[0],strs[1]);
+                }
             }
         }
-        if (inputStream != null){
-            entity = new HttpRequestEntity();
-            BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
-            try {
-
-                // read the request
-                byte[] bytes = new byte[bufferedInputStream.available()];
-                bufferedInputStream.read(bytes);
-                String httpRequestDatagram = new String(bytes,0,bytes.length);
-                logger.info("httpRequestDatagram:\r\n"+httpRequestDatagram);
-
-                // parse the request
-                String[] strings = httpRequestDatagram.split("\r\n");
-
-                // parse request line
-                String requestLine  = strings[0];
-                logger.info("requestLine:"+requestLine);
-                String[] requestLineInfo = requestLine.split(" ");
-                if ("GET".equalsIgnoreCase(requestLineInfo[0])){
-                    entity.setHttpMethod(HttpMethod.GET);
-                } else {
-                    entity.setHttpMethod(HttpMethod.POST);
-                }
-                entity.setRequestURL(requestLineInfo[1]);
-
-                //parse the http request headers and the parameter
-                Map<String, String> requestHeaders = entity.getRequestHeaders();
-                Map<String, String> requestEntity = entity.getRequestEntity();
-                for (int i = 1;i<strings.length;i++){
-                    if (!" ".equals(strings[i])){
-                        // headers
-                        String[] headers = strings[i].split(":");
-                        requestHeaders.put(headers[0],headers[1].trim());
-                    } else {
-                        // request body
-                        String[] parameterPairs = strings[i].split("&");
-                        for (String str : parameterPairs){
-                            String[] parameter = str.split("=");
-                            requestEntity.put(parameter[0],parameter[1]);
-                        }
+        //parse the request headers and parameter 解析请求头部行和post提交参数
+        for (int i = 1;i<requestLines.length;i++){
+            if (!" ".equals(requestLines[i])){
+                LOGGER.info("request header:"+requestLines[i]);
+                String[] headers = requestLines[i].split(":");
+                entity.getRequestHeaders().put(headers[0],headers[1]);
+            } else {
+                // 判断是否带有post参数
+                if (i+1 < requestLines.length){
+                    String[] paramPairs = requestLines[i + 1].split("&");
+                    LOGGER.info("request parameter:"+requestLines[i + 1]);
+                    for (String params : paramPairs){
+                        String[] strs = params.split("=");
+                        entity.getRequestEntity().put(strs[0],strs[1]);
                     }
                 }
-            } catch (IOException e) {
-                logger.error("parse the http request fail!",e);
             }
         }
+
         return entity;
+
     }
+
+
 }
