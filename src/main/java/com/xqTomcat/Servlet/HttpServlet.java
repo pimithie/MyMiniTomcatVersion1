@@ -28,11 +28,6 @@ public abstract class HttpServlet implements Servlet{
         }
     }
 
-    @Override
-    public void destroy() {
-        System.out.println("servlet destroyed!");
-    }
-
     /**
      * Concrete subclass implementation to process get request
      * 具体子类实现的方法去处理get请求

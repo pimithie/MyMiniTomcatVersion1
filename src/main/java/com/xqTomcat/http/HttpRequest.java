@@ -39,6 +39,9 @@ public class HttpRequest {
     }
 
     public String getRequestURL(){
+        if (null == entity){
+            return null;
+        }
         return entity.getRequestURL();
     }
 

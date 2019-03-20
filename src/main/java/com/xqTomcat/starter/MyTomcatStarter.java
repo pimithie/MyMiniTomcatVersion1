@@ -3,22 +3,19 @@ package com.xqTomcat.starter;
 import com.xqTomcat.Servlet.Servlet;
 import com.xqTomcat.annotation.MyServlet;
 import com.xqTomcat.dispatcher.Dispatcher;
-import com.xqTomcat.http.HttpRequestEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @author xiaqi
- * @date 2019/3/17
  * tomcat starter.
  */
 public class MyTomcatStarter {
@@ -27,12 +24,16 @@ public class MyTomcatStarter {
 
     private static final Dispatcher DISPATCHER = new Dispatcher();
 
+    private static final ExecutorService excutors = Executors.newFixedThreadPool(10);
+
     private static String basePackage = "com.xqTomcat";
 
     /**
      * start the tomcat server
      */
     public static void main(String[] args) throws Exception {
+        // record the start timestamp 记录tomcat启动时间戳
+        long start = System.currentTimeMillis();
 
         // initialize servlet mapping
         // 初始化servlet mapping
@@ -42,18 +43,27 @@ public class MyTomcatStarter {
         // 实例化所有在容器启动的加载的servlet
         instantiationEarlyServlet();
 
-//        // record the start timestamp
-//        long start = System.currentTimeMillis();
-//        // create the serversocket to listening the specific port
-//        ServerSocket serverSocket = new ServerSocket(8080);
-//        logger.info("my tomcat started,listening "+8080+" port");
-//        while (true){
-//            // start listening
-//            Socket socket = serverSocket.accept();
-//            logger.info("receive http request,create the socket:"+socket);
-//            DISPATCHER.dispatch(socket);
-//        }
+        // create the serversocket to listening the specific port
+        ServerSocket serverSocket = new ServerSocket(8080);
+        logger.info("my tomcat started in "+(System.currentTimeMillis()-start)+"ms,listening "+8080+" port");
+        while (true){
+            // start listening 开启监听对应端口
+            Socket socket = serverSocket.accept();
+            logger.info("receive http request,create the socket:"+socket);
+            logger.info("submit the request to a thread.");
+            excutors.submit(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        DISPATCHER.dispatch(socket);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
     }
+
 
     private static void instantiationEarlyServlet() throws Exception {
         // traverse the servlet mapping to search for all early servlet
@@ -92,7 +102,6 @@ public class MyTomcatStarter {
         // retrieve all directory and file of rootDirectory
         // 获取根目录下所有的目录和文件
         String[] fileStrs = rootDirectory.list();
-        logger.info("root directory has "+ Arrays.toString(fileStrs));
         for (String fileStr : fileStrs){
             File file = new File(rootDirectoryStr+"/"+fileStr);
             if (file.isDirectory()){
@@ -100,13 +109,13 @@ public class MyTomcatStarter {
             } else {
                 // com.xqTomcat.annotation.MyServlet.class
                 String className = basePackage+"."+fileStr;
-                logger.info("scanned component:"+className);
                 // com.xqTomcat.annotation.MyServlet
                 className = className.replace(".class","");
                 // put into the servlet mapping 放入servlet mapping的map中
                 Class<?> clazz = Class.forName(className);
                 // exist @MyServlet annotation? 判断是否存在@MyServlet注解
                 if (clazz.isAnnotationPresent(MyServlet.class)){
+                    logger.info("find a servlet:"+clazz.getName());
                     MyServlet annotation = clazz.getAnnotation(MyServlet.class);
                     String path = annotation.value();
                     DISPATCHER.getServletMapping().put(path,clazz);

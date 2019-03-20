@@ -12,11 +12,10 @@ import java.io.UnsupportedEncodingException;
  * my test servlet
  * 测试servlet
  */
-@MyServlet("/test")
+@MyServlet(value = "/test",load_on_startup = true)
 public class MyTestServlet extends HttpServlet {
     @Override
     protected void doGet(HttpRequest request, HttpResponse response) throws Exception {
-        System.out.println(request.getRequestURL());
         response.getOutputStream().write("你好！夏齐".getBytes("UTF-8"));
     }
 
