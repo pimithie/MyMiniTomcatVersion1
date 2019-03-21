@@ -63,8 +63,8 @@ public class MyTomcatStarter {
         instantiationEarlyServlet();
 
         // create the serversocket to listening the specific port
-        ServerSocket serverSocket = new ServerSocket(8080);
-        logger.info("my tomcat started in ["+(System.currentTimeMillis()-start)+"] ms,listening "+8080+" port");
+        ServerSocket serverSocket = new ServerSocket(port);
+        logger.info("my tomcat started in ["+(System.currentTimeMillis()-start)+"] ms,listening "+port+" port");
         while (true){
             // start listening 开启监听对应端口
             Socket socket = serverSocket.accept();
